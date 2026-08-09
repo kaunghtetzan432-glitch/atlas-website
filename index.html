@@ -3,168 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atlas — Your Smart Study Companion</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5faf7;
-      color: #17251d;
-    }
-
-    nav {
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 7%;
-      background: white;
-      border-bottom: 1px solid #e4eee8;
-    }
-
-    .logo {
-      font-size: 28px;
-      font-weight: 800;
-      color: #238b57;
-    }
-
-    .login {
-      padding: 10px 20px;
-      border: 1px solid #238b57;
-      border-radius: 10px;
-      background: white;
-      color: #238b57;
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .hero {
-      min-height: calc(100vh - 72px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    .content {
-      max-width: 750px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: #e2f4e9;
-      color: #238b57;
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(48px, 10vw, 82px);
-      line-height: 1;
-      color: #238b57;
-    }
-
-    .subtitle {
-      margin: 22px auto 32px;
-      max-width: 600px;
-      font-size: 20px;
-      line-height: 1.6;
-      color: #617268;
-    }
-
-    .start {
-      padding: 15px 32px;
-      border: none;
-      border-radius: 12px;
-      background: #238b57;
-      color: white;
-      font-size: 17px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(35, 139, 87, 0.2);
-    }
-
-    .start:hover {
-      background: #1b7047;
-    }
-
-    .features {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 45px;
-    }
-
-    .feature {
-      padding: 10px 16px;
-      background: white;
-      border: 1px solid #e1ebe5;
-      border-radius: 10px;
-      color: #52645a;
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      nav {
-        padding: 0 20px;
-      }
-
-      .subtitle {
-        font-size: 17px;
-      }
-
-      .features {
-        margin-top: 30px;
-      }
-    }
-  </style>
+  <title>Atlas</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <main class="auth-page">
 
-  <nav>
-    <div class="logo">Atlas</div>
-    <button class="login" onclick="alert('Login coming next!')">
-      Log In
-    </button>
-  </nav>
+    <section class="mountain-side" aria-hidden="true"></section>
 
-  <main class="hero">
-    <div class="content">
+    <section class="auth-panel">
+      <!-- SIGN UP -->
+      <div class="screen" id="signup-screen">
+        <h1>Sign Up</h1>
 
-      <div class="badge">Your smart study companion</div>
+        <form id="signup-form">
+          <input id="signup-username" type="text" placeholder="Username :" autocomplete="username" required>
+          <input id="signup-password" type="password" placeholder="Password :" autocomplete="new-password" required>
 
-      <h1>Study smarter.<br>Go further.</h1>
+          <button class="primary-button" type="submit">Continue</button>
 
-      <p class="subtitle">
-        Atlas brings your notes, homework, AI tools, flashcards,
-        and study plans together in one simple place.
-      </p>
+          <button class="google-button" type="button" id="signup-google">
+            <span>Or continue with Google</span>
+            <span class="google-icon">G</span>
+          </button>
 
-      <button class="start" onclick="window.location.href='role.html'"></button>
-        Get Started →
-      </button>
-
-      <div class="features">
-        <div class="feature">🤖 AI Tutor</div>
-        <div class="feature">📝 Smart Notes</div>
-        <div class="feature">🃏 Flashcards</div>
-        <div class="feature">📅 Homework Planner</div>
+          <p class="switch-text">Have an account?</p>
+          <button class="secondary-link" type="button" id="show-login">Log in</button>
+        </form>
       </div>
 
-    </div>
+      <!-- CONFIRM SIGN UP -->
+      <div class="screen hidden" id="confirm-screen">
+        <h1>Sign Up</h1>
+
+        <form id="confirm-form">
+          <input id="confirm-password" type="password" placeholder="Confirm password :" autocomplete="new-password" required>
+          <button class="primary-button" type="submit">Confirm</button>
+        </form>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="screen hidden" id="login-screen">
+        <h1>Log In</h1>
+
+        <form id="login-form">
+          <input id="login-username" type="text" placeholder="Username :" autocomplete="username" required>
+          <input id="login-password" type="password" placeholder="Password :" autocomplete="current-password" required>
+
+          <button class="primary-button" type="submit">Continue</button>
+
+          <button class="google-button" type="button" id="login-google">
+            <span>Or continue with Google</span>
+            <span class="google-icon">G</span>
+          </button>
+
+          <p class="switch-text">Don't have an account?</p>
+          <button class="secondary-link" type="button" id="show-signup">Sign up</button>
+        </form>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="screen hidden" id="success-screen">
+        <h1>Welcome to Atlas</h1>
+        <p class="success-text">You're signed in.</p>
+        <button class="primary-button" id="logout-button">Log out</button>
+      </div>
+    </section>
   </main>
 
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
